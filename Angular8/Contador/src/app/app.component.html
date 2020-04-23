@@ -1,0 +1,22 @@
+<h1 class="container bg-dark text-white text-center my-4 py-4">[Contador -> Esmeralda Hernández]</h1>
+ 
+ <div class="container" ng-app="" ng-controller="myController">
+  
+<button class="btn btn-success" (click)="contador=contador+1">Suma 1 al contador</button>
+<button class="btn btn-danger" (click)="contador=contador-1">Resta 1 al contador</button>
+
+
+<div *ngIf="contador==15; then thenBlock"></div>
+<ng-template #thenBlock>
+    <button>Hola mundo!</button>
+</ng-template>
+
+<div *ngIf="contador==-10; then elseBlock"></div>
+<ng-template #elseBlock>
+    <button>Adiós</button>
+</ng-template>
+
+
+<p>{{ contador }}</p>
+  
+</div>
