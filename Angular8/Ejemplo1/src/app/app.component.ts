@@ -7,9 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'A mi primera aplicación';
-  show:boolean = False;
-  activo;
+  show:boolean = false;
+  activo: any;
   cursos:string[] = ['HTML', 'ANGULAR', 'PHP']
+
 
   animales:Array<any> = [
     {tipo:'Perro', nombre:'Lisa', edad:30},

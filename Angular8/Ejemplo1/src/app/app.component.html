@@ -1,23 +1,7 @@
-<h1 class="container bg-dark text-white text-center my-4 py-4">[ngClass]</h1>
- 
- <div class="container">
-    <button class="btn btn-dark mb-3" (click)="activo='primero'">Primero</button>
-    <button class="btn btn-danger mb-3" (click)="show=!show">Acción</button>
-    
-    <p class="text-info" *ngIf="show; else showDos">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-    Nulla ultrices ullamcorper massa, id hendrerit dolor. 
-    Etiam non mi eu neque ullamcorper commodo id ac nisl. 
-    Cras et mi feugiat, viverra augue sit amet, euismod odio. 
-    Morbi pulvinar diam sit amet tortor imperdiet porttitor. 
-    </p>
-    <ng-template #showDos>
-        <p class="text-danger">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Nulla ultrices ullamcorper massa, id hendrerit dolor. 
-        Etiam non mi eu neque ullamcorper commodo id ac nisl. 
-        Cras et mi feugiat, viverra augue sit amet, euismod odio. 
-        Morbi pulvinar diam sit amet tortor imperdiet porttitor. 
-        </p>
-    </ng-template>
- </div>
+<div class="container">
+    <app-cabecera></app-cabecera>
+
+    <router-outlet></router-outlet>
+
+    <app-footer></app-footer>
+</div>
