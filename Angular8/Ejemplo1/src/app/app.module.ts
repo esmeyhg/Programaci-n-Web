@@ -15,10 +15,12 @@ import { FooterComponent } from './footer/footer.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
+import { EquipoComponent } from './equipo/equipo.component';
 
 
 const routes: Routes = [
   {path: 'contacto', component: ContactoComponent},
+  {path: 'equipo/:id', component: EquipoComponent},
   {path: 'nosotros', component: NosotrosComponent},
   {path: '', component: InicioComponent, pathMatch: 'full'},
   {path: '**', redirectTo: 'nosotros', pathMatch: 'full'}
@@ -31,7 +33,8 @@ const routes: Routes = [
     FooterComponent,
     ContactoComponent,
     InicioComponent,
-    NosotrosComponent
+    NosotrosComponent,
+    EquipoComponent
   ],
   imports: [
     BrowserModule,
