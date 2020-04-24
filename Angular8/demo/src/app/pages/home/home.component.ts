@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  nombre: string = 'Nombre Usuario';
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
   }
 
+  cambiarNombre() {
+    this.nombre = "Esmeralda Hdez";
+    this.dataService.nombreUsuario =this.nombre;
+  }
+
+  hijoCambioNombre( nuevoNombre: string ) {
+    this.nombre = nuevoNombre;
+    this.dataService.nombreUsuario =nuevoNombre;
+  }
+ 
 }
