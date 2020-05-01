@@ -16,7 +16,7 @@
     <script src="dist/js/adminlte.js"></script>
 
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -43,7 +43,7 @@
                 <!-- SEARCH FORM -->
                 <form class="form-inline ml-3">
                     <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                        <input class="form-control form-control-navbar" name="search" type="search" placeholder="Search"
                             aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn btn-navbar" type="submit">
@@ -199,18 +199,33 @@
                                 </a>
                             </li>
 
+                            @can('administrador')
                             <li class="nav-item">
-                                <a href="usuarios"
+                                <a href="{{url('usuarios')}}"
                                     class="{{ Request::path() === 'usuarios' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon fas fa-users"></i>
                                     <p>
                                         Usuarios
-                                        <?php use App\User; $users_count = User::all()->count(); ?>
+                                        <?php $users_count = DB::table('users')->count(); ?>
                                         <span class="right badge badge-danger">{{ $users_count ?? '0' }}</span>
                                     </p>
                                 </a>
                             </li>
+                            @endcan
 
+                            @can('administrador')
+                            <li class="nav-item">
+                                <a href="{{url('roles')}}"
+                                    class="{{ Request::path() === 'roles' ? 'nav-link active' : 'nav-link' }}">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>
+                                        Roles
+                                    </p>
+                                </a>
+                            </li>
+                            @endcan
+
+                            @can('moderador')
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon far fa-sticky-note"></i>
@@ -218,21 +233,21 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="notas/todas"
+                                        <a href="{{ url('notas/todas') }}"
                                             class="{{ Request::path() === 'notas/todas' ? 'nav-link active' : 'nav-link' }}">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Todas</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="notas/favoritas"
+                                        <a href="{{ url('notas/favoritas') }}"
                                             class="{{ Request::path() === 'notas/favoritas' ? 'nav-link active' : 'nav-link' }}">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Favoritas</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="notas/archivadas"
+                                        <a href="{{ url('notas/archivadas') }}"
                                             class="{{ Request::path() === 'notas/archivadas' ? 'nav-link active' : 'nav-link' }}">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Archivadas</p>
@@ -240,6 +255,7 @@
                                     </li>
                                 </ul>
                             </li>
+                            @endcan
 
                         </ul>
                     </nav>

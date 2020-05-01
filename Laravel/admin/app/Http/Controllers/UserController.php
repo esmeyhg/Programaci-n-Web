@@ -15,16 +15,27 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
+    public function index(Request $request) {
+        $query = trim($request->get('search'));
+
+        $users = User::where('name', 'LIKE', '%' . $query . '%')
+            ->orderBy('id', 'asc')
+            ->paginate(5);
+            //->get();
+
+        return view('usuarios.index', ['users' => $users, 'search' => $query]);
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    /* public function index()
     {
         $users = User::all();
         return view('usuarios.index', ['users' => $users]);
-    }
+    } */
 
     /**
      * Show the form for creating a new resource.
@@ -48,7 +59,7 @@ class UserController extends Controller
 
         $usuario->name = request('name');
         $usuario->email = request('email');
-        $usuario->password = request('password');
+        $usuario->password = bcrypt(request('password'));
 
         $usuario->save();
 
